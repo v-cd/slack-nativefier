@@ -65,9 +65,9 @@ function createWindow() {
   });
 
   // open links in browser
-  win.webContents.on("new-window", function (event, url) {
-    event.preventDefault();
+  win.webContents.setWindowOpenHandler(({ url }) => {
     shell.openExternal(url);
+    return { action: "deny" };
   });
 }
 
